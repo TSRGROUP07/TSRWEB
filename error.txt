@@ -1,0 +1,8 @@
+ERROR: Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/guides/about-shareddrives), or use OAuth delegation (http://support.google.com/a/answer/7281227) instead.
+STACK: Error: Service Accounts do not have storage quota. Leverage shared drives (https://developers.google.com/workspace/drive/api/guides/about-shareddrives), or use OAuth delegation (http://support.google.com/a/answer/7281227) instead.
+    at Gaxios._request (D:\c masaüstü\TSR_WEB\node_modules\googleapis-common\node_modules\gaxios\src\gaxios.ts:213:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async JWT.requestAsync (D:\c masaüstü\TSR_WEB\node_modules\googleapis-common\node_modules\google-auth-library\build\src\auth\oauth2client.js:463:20)
+    at async createAPIRequestAsync (D:\c masaüstü\TSR_WEB\node_modules\googleapis-common\build\src\apirequest.js:308:25)
+    at async uploadToDrive (D:\c masaüstü\TSR_WEB\scripts\test-drive-upload.ts:39:26)
+    at async testUpload (D:\c masaüstü\TSR_WEB\scripts\test-drive-upload.ts:68:24)

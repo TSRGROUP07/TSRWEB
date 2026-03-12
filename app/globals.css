@@ -1,0 +1,713 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Animations for Kurumsal Page */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-30px) translateX(20px) rotate(120deg);
+  }
+
+  66% {
+    transform: translateY(30px) translateX(-20px) rotate(240deg);
+  }
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradient-text {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.animate-gradient-text {
+  background-size: 200% 200%;
+  animation: gradient-text 3s ease infinite;
+}
+
+.animate-scroll {
+  animation: scroll 2s infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out;
+}
+
+/* Leaflet CSS - Harita için gerekli */
+@import 'leaflet/dist/leaflet.css';
+
+/* Leaflet harita container için özel stiller */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+}
+
+.leaflet-container img {
+  max-width: none !important;
+}
+
+/* Leaflet popup stilleri - TSR Marka Renkleri */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2e3c3a 0%, #3a4d4a 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(46, 60, 58, 0.4);
+  padding: 0;
+  overflow: hidden;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.leaflet-popup-tip {
+  background: linear-gradient(135deg, #2e3c3a 0%, #3a4d4a 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.leaflet-popup-close-button {
+  color: white !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  padding: 8px 12px !important;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #b7b1ad !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 50%;
+}
+
+/* TSR Popup İçerik Stilleri */
+.tsr-popup-content {
+  background: linear-gradient(135deg, #2e3c3a 0%, #3a4d4a 100%);
+  color: white;
+}
+
+.tsr-popup-image {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+}
+
+.tsr-popup-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tsr-popup-verified {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(135deg, #2e3c3a 0%, #3a4d4a 100%);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tsr-popup-body {
+  padding: 16px;
+}
+
+.tsr-popup-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.tsr-popup-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 12px;
+}
+
+.tsr-popup-location svg {
+  flex-shrink: 0;
+}
+
+.tsr-popup-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.tsr-popup-features {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 12px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.tsr-popup-features span {
+  display: flex;
+  align-items: center;
+}
+
+.tsr-popup-link {
+  display: block;
+  text-align: center;
+  background: white;
+  color: #2e3c3a;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.tsr-popup-link:hover {
+  background: #b7b1ad;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Popup z-index ayarı - arama butonunun altında kalması için */
+.leaflet-popup {
+  z-index: 1500 !important;
+}
+
+/* Popup açıldığında arama butonunun üstüne gelmemesi için */
+.leaflet-container {
+  position: relative;
+}
+
+.leaflet-popup-pane {
+  z-index: 1500;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 230, 235, 235;
+  /* Orta Gri (#E6EBEB) - Daha belirgin */
+  --background-end-rgb: 220, 225, 225;
+  /* Koyu Gri (#DCE1E1) - Belirgin geçiş */
+
+  /* TSR GROUP Renk Paleti */
+  --teal-dark: #2e3c3a;
+  /* Yeşil */
+  --teal-vibrant: #2e3c3a;
+  /* Yeşil */
+  --teal-light: #2e3c3a;
+  /* Yeşil */
+  --teal-ice: #2e3c3a;
+  /* Yeşil */
+  --white: #FFFFFF;
+  /* Saf Beyaz */
+
+  /* Modern Renk Paleti */
+  --purple-vibrant: #9C27B0;
+  /* Classic purple */
+  --purple-medium: #BA68C8;
+  /* Medium purple */
+  --purple-dark: #7B1FA2;
+  /* Dark purple */
+  --cyan-vibrant: #00BCD4;
+  /* Classic cyan */
+  --cyan-medium: #4DD0E1;
+  /* Medium cyan */
+  --cyan-dark: #0097A7;
+  /* Dark cyan */
+  --gold-vibrant: #FFC107;
+  /* Classic gold */
+  --gold-medium: #FFD54F;
+  /* Medium gold */
+  --gold-dark: #FFA000;
+  /* Dark gold */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 75, 77;
+    /* Koyu Teal */
+    --background-end-rgb: 0, 75, 77;
+  }
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  /* Tek renk gri-kahverengi arka plan */
+  background: #b7b1ad;
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobil cihazlarda background-attachment: fixed performans sorunlarına yol açabilir */
+@media (max-width: 1024px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-dark {
+    background: rgba(0, 75, 77, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(24, 155, 163, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    color: #4f271b;
+    /* Kahve başlık rengi */
+  }
+
+  /* Brown gradient text */
+  .gradient-text-brown {
+    background: linear-gradient(135deg, #8B4513 0%, #5D4037 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Burgundy/Maroon gradient text */
+  .gradient-text-burgundy {
+    background: linear-gradient(135deg, #800020 0%, #5C1A1A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Modern Purple gradient text */
+  .gradient-text-purple {
+    background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Modern Cyan gradient text */
+  .gradient-text-cyan {
+    background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gold gradient text (Lüks hissi) */
+  .gradient-text-gold {
+    background: linear-gradient(135deg, #FFC107 0%, #FFA000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Purple-Cyan gradient (Modern kombinasyon) */
+  .gradient-text-modern {
+    background: linear-gradient(135deg, #9C27B0 0%, #00BCD4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Modern card hover */
+  .card-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 75, 77, 0.2);
+  }
+
+  /* Shine effect */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent);
+    transition: left 0.5s;
+  }
+
+  .shine:hover::before {
+    left: 100%;
+  }
+}
+
+/* Custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2e3c3a #b7b1ad;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #b7b1ad;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2e3c3a 0%, #3a4d4a 50%, #2e3c3a 100%);
+  border-radius: 10px;
+  border: 2px solid #b7b1ad;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #3a4d4a 0%, #2e3c3a 50%, #3a4d4a 100%);
+}
+
+/* Admin panel için özel stiller */
+.admin-layout {
+  margin-left: 16rem;
+}
+
+/* Force dark text for inputs in Admin Panel to prevent white-on-white issues in Dark Mode */
+#admin-layout-root input,
+#admin-layout-root textarea,
+#admin-layout-root select {
+  color: #111827 !important;
+  /* gray-900 */
+  background-color: #ffffff;
+}
+
+/* Modern Animations */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(24, 155, 163, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(24, 155, 163, 0.6);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-in;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Modern hover lift effect */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+/* Smooth scale on hover */
+.hover-scale {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Delay utilities */
+.delay-100 {
+  animation-delay: 0.1s;
+  animation-fill-mode: both;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+  animation-fill-mode: both;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modern gradient backgrounds */
+.bg-gradient-modern {
+  background: linear-gradient(135deg, #E0F2F1 0%, #FFFFFF 50%, #E0F2F1 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 10s ease infinite;
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+/* Google Translate Widget Hiding */
+.skiptranslate, 
+iframe.goog-te-banner-frame,
+#goog-te-modal-container,
+.goog-te-balloon-frame,
+.goog-te-menu-value,
+.goog-te-menu-frame,
+.goog-te-gadget-icon,
+.goog-te-gadget-simple img,
+.goog-te-gadget-simple span,
+#google_translate_element {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}

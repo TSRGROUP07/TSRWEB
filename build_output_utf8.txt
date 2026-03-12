@@ -1,0 +1,105 @@
+﻿  Ôû▓ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+node.exe : Failed to 
+compile.
+At C:\Program Files\n
+odejs\npx.ps1:29 char
+:3
++   & $NODE_EXE $NPX_
+CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Failed    
+ to compile.:Stri    
+ng) [], RemoteEx    c
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+
+./components/GoogleTr
+anslate.tsx
+Error: 
+  [31mx[0m You're i
+mporting a component 
+that needs useEffect.
+ It only works in a C
+lient Component but n
+one of its parents ar
+e marked with "use cl
+ient", so they're Ser
+ver Components by def
+ault.
+  [31m|[0m Learn mo
+re: https://nextjs.or
+g/docs/getting-starte
+d/react-essentials
+  [31m|[0m 
+  [31m|[0m 
+   ,-[[36;1;4mD:\c m
+asa├╝st├╝\TSR\TSR_WEB
+\components\GoogleTra
+nslate.tsx[0m:1:1]
+ [2m1[0m | import {
+ useEffect, useRef } 
+from "react";
+   : [31;1m         
+^^^^^^^^^[0m
+ [2m2[0m | import S
+cript from "next/scri
+pt";
+ [2m3[0m | 
+ [2m3[0m | export d
+efault function Googl
+eTranslate() {
+   `----
+
+  [31mx[0m You're i
+mporting a component 
+that needs useRef. It
+ only works in a Clie
+nt Component but none
+ of its parents are m
+arked with "use clien
+t", so they're Server
+ Components by defaul
+t.
+  [31m|[0m Learn mo
+re: https://nextjs.or
+g/docs/getting-starte
+d/react-essentials
+  [31m|[0m 
+  [31m|[0m 
+   ,-[[36;1;4mD:\c m
+asa├╝st├╝\TSR\TSR_WEB
+\components\GoogleTra
+nslate.tsx[0m:1:1]
+ [2m1[0m | import {
+ useEffect, useRef } 
+from "react";
+   : [31;1m         
+           ^^^^^^[0m
+ [2m2[0m | import S
+cript from "next/scri
+pt";
+ [2m3[0m | 
+ [2m3[0m | export d
+efault function Googl
+eTranslate() {
+   `----
+
+Import trace for requ
+ested module:
+./components/GoogleTr
+anslate.tsx
+./app/[locale]/layout
+.tsx
+
+
+> Build failed becaus
+e of webpack errors
