@@ -4,6 +4,12 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { useEffect } from 'react';
 
+declare global {
+  interface Window {
+    fbq: any;
+  }
+}
+
 export default function MetaPixel() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
