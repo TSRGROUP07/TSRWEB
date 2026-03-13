@@ -256,7 +256,7 @@ export default function Header() {
         <nav className="container mx-auto px-4 lg:px-8 py-3">
           <div className="flex items-center justify-between">
             {/* Logo - Sol */}
-            <div>
+            <div className="flex-1 flex justify-start">
               <Link href="/" prefetch={true} className="flex items-center gap-3">
                 <div className="relative h-14 w-auto flex items-center">
                   <Image
@@ -313,7 +313,7 @@ export default function Header() {
             )}
 
             {/* Navigasyon - Orta */}
-            <div className="hidden lg:flex items-center space-x-6 justify-start ml-20">
+            <div className="hidden lg:flex items-center gap-8 justify-center flex-none">
               {/* Kurumsal Dropdown */}
               <div className="relative" ref={corporateRef}>
                 <button
@@ -369,11 +369,11 @@ export default function Header() {
               {/* Soru Sor Butonu */}
               <button
                 onClick={() => setIsQuestionFormOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 text-white hover:text-white/80 transition-all font-normal text-sm relative group whitespace-nowrap"
+                className="flex items-center gap-2 px-4 py-2 text-white hover:text-[#EDC370] transition-all font-medium text-sm relative group whitespace-nowrap bg-white/5 hover:bg-white/10 rounded-full border border-white/10 shadow-lg"
               >
                 <HelpCircle className="h-4 w-4" />
                 {t('askQuestion')}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all group-hover:w-full bg-white"></span>
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 transition-all group-hover:w-1/2 bg-[#EDC370]"></span>
               </button>
             </div>
 
