@@ -46,14 +46,14 @@ export async function GET() {
       return NextResponse.json({ url: envVideoUrl });
     }
 
-    // Fallback: GitHub Raw URL (Default)
-    const githubVideoUrl = "https://raw.githubusercontent.com/eraybaysl/tsr-web/main/public/videos/ALANYA%20CASTLE%20PROMOTION%20VIDEO%20DRONE%20%23alanya%20%23drone%20%23promotion.mp4";
-    return NextResponse.json({ url: githubVideoUrl });
+    // Fallback: Default Local URL
+    const defaultVideoUrl = "/videos/default-hero.mp4";
+    return NextResponse.json({ url: defaultVideoUrl });
   } catch (error: any) {
     console.error("Hero video GET error:", error);
     // Fallback on error as well
-    const githubVideoUrl = "https://raw.githubusercontent.com/eraybaysl/tsr-web/main/public/videos/ALANYA%20CASTLE%20PROMOTION%20VIDEO%20DRONE%20%23alanya%20%23drone%20%23promotion.mp4";
-    return NextResponse.json({ url: githubVideoUrl });
+    const defaultVideoUrl = "/videos/default-hero.mp4";
+    return NextResponse.json({ url: defaultVideoUrl });
   }
 }
 

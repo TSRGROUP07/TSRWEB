@@ -34,6 +34,11 @@ export async function GET() {
         });
     } catch (error: any) {
         console.error("Locations GET error:", error);
-        return NextResponse.json([], { status: 500 });
+        return NextResponse.json([], { 
+            status: 500,
+            headers: {
+                'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120'
+            }
+        });
     }
 }

@@ -34,7 +34,7 @@ export default function BlogPage() {
 
   const loadBlogs = async () => {
     try {
-      const response = await fetch("/api/admin/blogs");
+      const response = await fetch(`/api/admin/blogs?t=${Date.now()}`);
       const data = await response.json();
       setBlogs(data);
     } catch (error) {

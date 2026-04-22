@@ -56,6 +56,11 @@ export default function AdminSidebar() {
       icon: FileText,
     },
     {
+      name: "Araç Kiralama",
+      href: "/admin/arac-kiralama",
+      icon: Building2, // Building2 or another icon if preferred
+    },
+    {
       name: "Menü Yönetimi",
       href: "/admin/menu",
       icon: Menu,

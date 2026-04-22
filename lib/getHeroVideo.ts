@@ -19,11 +19,11 @@ export async function getHeroVideoUrl(): Promise<string | null> {
       return envVideoUrl;
     }
 
-    // Fallback: GitHub Raw URL (Default)
-    return "https://raw.githubusercontent.com/eraybaysl/tsr-web/main/public/videos/ALANYA%20CASTLE%20PROMOTION%20VIDEO%20DRONE%20%23alanya%20%23drone%20%23promotion.mp4";
+    // Fallback: Default Local URL
+    return "/videos/default-hero.mp4";
   } catch (error: any) {
     console.error("Hero video getHeroVideoUrl error:", error);
     // Fallback on error
-    return "https://raw.githubusercontent.com/eraybaysl/tsr-web/main/public/videos/ALANYA%20CASTLE%20PROMOTION%20VIDEO%20DRONE%20%23alanya%20%23drone%20%23promotion.mp4";
+    return "/videos/default-hero.mp4";
   }
 }

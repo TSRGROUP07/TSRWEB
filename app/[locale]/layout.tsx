@@ -4,7 +4,6 @@ import StructuredData from "@/components/StructuredData";
 import { getOrganizationSchema, getWebsiteSchema } from "@/lib/seo";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Analytics } from "@vercel/analytics/react"
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locales } from "@/lib/navigation";
@@ -137,7 +136,6 @@ export default async function LocaleLayout({
                     <ConditionalLayout>{children}</ConditionalLayout>
                     <GoogleTranslate />
                 </NextIntlClientProvider>
-                <Analytics />
             </body>
         </html>
     );

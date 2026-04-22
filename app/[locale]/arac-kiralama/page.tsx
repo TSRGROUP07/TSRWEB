@@ -10,74 +10,7 @@ import StructuredData from "@/components/StructuredData";
 import { getLocalBusinessSchema } from "@/lib/seo";
 import { useTranslations } from "next-intl";
 
-const cars = [
-  {
-    id: 1,
-    name: "Fiat Egea",
-    category: "economy",
-    images: ["/RENTACAR/EGEA.jpg"],
-    transmission: "manual",
-    passengers: 5,
-    fuel: "gasoline",
-    price: 40,
-    currency: "€",
-  },
-  {
-    id: 2,
-    name: "Hyundai Staria",
-    category: "minibus",
-    images: ["/RENTACAR/STARİA.jpg"],
-    transmission: "auto",
-    passengers: 9,
-    fuel: "diesel",
-    price: 120,
-    currency: "€",
-  },
-  {
-    id: 3,
-    name: "Renault Clio",
-    category: "economy",
-    images: ["/RENTACAR/CLİO.png"],
-    transmission: "manual",
-    passengers: 5,
-    fuel: "gasoline",
-    price: 35,
-    currency: "€",
-  },
-  {
-    id: 4,
-    name: "Renault Duster",
-    category: "suv",
-    images: ["/RENTACAR/duster.png"],
-    transmission: "manual",
-    passengers: 5,
-    fuel: "diesel",
-    price: 70,
-    currency: "€",
-  },
-  {
-    id: 5,
-    name: "Ford Ranger",
-    category: "offroad",
-    images: ["/RENTACAR/ranger.png"],
-    transmission: "manual",
-    passengers: 5,
-    fuel: "diesel",
-    price: 150,
-    currency: "€",
-  },
-  {
-    id: 6,
-    name: "Motorsikletler",
-    category: "motorcycle",
-    images: ["/RENTACAR/motor.png"],
-    transmission: "manual",
-    passengers: 2,
-    fuel: "gasoline",
-    price: 25,
-    currency: "€",
-  },
-];
+
 
 export default function AracKiralamaPage() {
   const t = useTranslations('rentACar');
@@ -100,9 +33,31 @@ export default function AracKiralamaPage() {
     return "bg-gradient-to-r from-[#2e3c3a] to-[#3a4d4a]";
   };
 
+  const [cars, setCars] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const response = await fetch("/api/admin/cars");
+        if (response.ok) {
+          const data = await response.json();
+          // Filter only published ones
+          const publishedCars = data.filter((c: any) => c.published);
+          setCars(publishedCars);
+        }
+      } catch (error) {
+        console.error("Araçlar yüklenemedi:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCars();
+  }, []);
+
   // Filtrelenmiş araçlar
   const filteredCars = useMemo(() => {
-    return cars.filter((car) => {
+    return (cars || []).filter((car) => {
       // Araç tipi filtresi
       if (selectedCarType !== "all" && car.category !== selectedCarType) {
         return false;
@@ -124,7 +79,7 @@ export default function AracKiralamaPage() {
 
       return true;
     });
-  }, [selectedCarType, minPrice, maxPrice, transmissionFilter, fuelFilter]);
+  }, [cars, selectedCarType, minPrice, maxPrice, transmissionFilter, fuelFilter]);
 
   const handleSearch = () => {
     // Arama çubuğuna scroll yap
@@ -142,7 +97,7 @@ export default function AracKiralamaPage() {
     }
   };
 
-  const handleReserve = (carId: number) => {
+  const handleReserve = (carId: any) => {
     // Rezervasyon için iletişim sayfasına yönlendir
     const car = cars.find(c => c.id === carId);
     const params = new URLSearchParams({

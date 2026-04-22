@@ -25,94 +25,26 @@ export default function BlogPage() {
   // Tek kategori: Blog
   const categories = ["Tümü", "Blog"];
 
-  // Statik blog verisi (API olmadan)
-  const staticPosts: BlogPost[] = [
-    {
-      id: "yabancilar-vatandaslik",
-      title: "Yabancılar Türkiye’de Nasıl T.C. Vatandaşı Olabilir?",
-      excerpt: "Yatırım yoluyla vatandaşlıkta gayrimenkul alımı öne çıkıyor; 400.000 USD ve 3 yıl satmama şerhi gibi koşullar var.",
-      image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=1200&h=800&fit=crop",
-      date: "21 Ocak 2026",
-      category: "Blog",
-      author: "TSR GROUP",
-    },
-    {
-      id: "ikamet-izni-nasil-alinir",
-      title: "İkametgâh (İkamet İzni) Nasıl Alınır?",
-      excerpt: "e-İkamet üzerinden online başvuru, randevu ve evrak teslimi temel adımlardır; türüne göre belge listesi değişir.",
-      image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&h=800&fit=crop",
-      date: "21 Ocak 2026",
-      category: "Blog",
-      author: "TSR GROUP",
-    },
-    {
-      id: "kisa-donem-kiralama-farklari",
-      title: "Kısa Dönem Kiralama: Uzun Döneme Kıyasla Farkları ve Faydaları",
-      excerpt: "Dinamik fiyatlandırma ve esnek nakit akışı sağlar; izin belgesi ve mevzuat gereklilikleri takip edilmelidir.",
-      image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&h=800&fit=crop",
-      date: "21 Ocak 2026",
-      category: "Blog",
-      author: "TSR GROUP",
-    },
-    {
-      id: "yabanci-yatirimci-hatalari",
-      title: "Yabancı Alıcıların Türkiye'de Yatırım Yaparken Yaptığı Hatalar",
-      excerpt: "Tapu uygunluğu ve değerleme kontrolü yapılmadan kapora verilmesi en yaygın hatalardan biridir.",
-      image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=800&fit=crop",
-      date: "21 Ocak 2026",
-      category: "Blog",
-      author: "TSR GROUP",
-    },
-    {
-      id: "turkiye-neden-gayrimenkul-gozdesi",
-      title: "Türkiye Neden Küresel Gayrimenkul Yatırımcılarının Gözdesi Oldu?",
-      excerpt: "Stratejik konum, turizm dinamikleri ve geniş ürün yelpazesi yabancı yatırımcıyı çekiyor.",
-      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&h=800&fit=crop",
-      date: "21 Ocak 2026",
-      category: "Blog",
-      author: "TSR GROUP",
-    },
-    {
-      id: "turkiye-yasam-maliyeti",
-      title: "Türkiye'de Genel Yaşam Maliyeti",
-      excerpt: "Konut, gıda, ulaşım, sağlık ve sosyal yaşam kalemleri kur/enflasyonla birlikte toplam maliyeti belirler.",
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=800&fit=crop",
-      date: "21 Ocak 2026",
-      category: "Blog",
-      author: "TSR GROUP",
-    },
-    {
-      id: "alanya-yasam-rehberi",
-      title: "Alanya Yaşam Rehberi: Ulaşım, Çevre Yolu, Sahil Yolu ve Pratik Bilgiler",
-      excerpt: "Kompakt şehir yapısı, sahil ve çevre yolu alternatifleri ve toplu taşıma hatları günlük yaşamı kolaylaştırır.",
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop",
-      date: "21 Ocak 2026",
-      category: "Blog",
-      author: "TSR GROUP",
-    },
-    {
-      id: "alanyada-yapilacaklar",
-      title: "Alanya'da Yapılacaklar Listesi",
-      excerpt: "Kale, teleferik, Dim Çayı, sahil yürüyüşleri ve su sporları popüler aktiviteler arasında.",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop",
-      date: "21 Ocak 2026",
-      category: "Blog",
-      author: "TSR GROUP",
-    },
-    {
-      id: "turkiye-ticari-alan-talep-artisi",
-      title: "Türkiye’de Ticari Alanlara Talep Artışı",
-      excerpt: "Turizm, perakende ve e-ticaret kaynaklı lojistik ihtiyacı ticari gayrimenkulde talebi artırıyor.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop",
-      date: "21 Ocak 2026",
-      category: "Blog",
-      author: "TSR GROUP",
-    },
-  ];
+
 
   useEffect(() => {
-    setPosts(staticPosts);
-    setLoading(false);
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch("/api/admin/blogs");
+        if (response.ok) {
+          const data = await response.json();
+          // Filter only published ones for public view
+          const publishedPosts = data.filter((p: any) => p.published);
+          setPosts(publishedPosts);
+        }
+      } catch (error) {
+        console.error("Bloglar yüklenemedi:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
   const filteredPosts = posts.filter((post) => {
@@ -181,40 +113,7 @@ export default function BlogPage() {
           ))}
         </div>
 
-        {/* Featured Guides / Özel Sayfalar */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {/* Citizenship Card */}
-          <Link href="/vatandaslik" className="group relative h-64 rounded-2xl overflow-hidden shadow-2xl transition-all hover:scale-[1.02]">
-            <Image
-              src="https://images.unsplash.com/photo-1527838832700-50592524d785?w=1200&auto=format&fit=crop"
-              alt="Vatandaşlık Rehberi"
-              fill
-              className="object-cover group-hover:scale-110 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 p-8">
-              <div className="bg-[#EDC370] text-black text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">ÖZEL SAYFA</div>
-              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#EDC370] transition-colors">Yatırım Yoluyla Vatandaşlık</h3>
-              <p className="text-white/80 line-clamp-2">400.000$ alt limiti, uygunluk hesaplayıcı ve adım adım başvuru süreci.</p>
-            </div>
-          </Link>
 
-          {/* Holiday Homes Card */}
-          <Link href="/tatil-evleri" className="group relative h-64 rounded-2xl overflow-hidden shadow-2xl transition-all hover:scale-[1.02]">
-            <Image
-              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&auto=format&fit=crop"
-              alt="Tatil Evleri"
-              fill
-              className="object-cover group-hover:scale-110 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 p-8">
-              <div className="bg-[#EDC370] text-black text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">VİTRİN</div>
-              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#EDC370] transition-colors">Tatil Evleri (Holiday Homes)</h3>
-              <p className="text-white/80 line-clamp-2">İngiliz yatırımcılar için özel seçilmiş, yüksek kira getirili eşyalı daireler.</p>
-            </div>
-          </Link>
-        </div>
 
         {/* Content */}
         {loading ? (

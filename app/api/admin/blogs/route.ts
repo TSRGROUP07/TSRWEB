@@ -23,7 +23,13 @@ export async function GET(request: NextRequest) {
       filtered = filtered.slice(0, parseInt(limit));
     }
 
-    return NextResponse.json(filtered);
+    console.log(`[API] Blogs GET: Found ${blogs?.length || 0} total, returning ${filtered.length} blogs`);
+
+    return NextResponse.json(filtered, {
+      headers: {
+        "Cache-Control": "no-store, max-age=0",
+      }
+    });
   } catch (error: any) {
     console.error("Blogs GET error:", error);
     return NextResponse.json(

@@ -75,7 +75,12 @@ export async function GET(
     console.error("Property fetch error:", error);
     return NextResponse.json(
       { error: "İlan yüklenemedi", details: error.message },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120'
+        }
+      }
     );
   }
 }

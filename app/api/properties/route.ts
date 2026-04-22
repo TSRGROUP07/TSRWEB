@@ -35,12 +35,12 @@ export async function GET(request: NextRequest) {
       console.log("⚠️ [API Properties] Properties değeri:", properties);
     }
 
-    // Eğer veritabanı boşsa veya hata varsa boş dizi dön (veya statik veri)
     if (!properties || properties.length === 0) {
       console.log("ℹ️ [API Properties] Boş dizi döndürülüyor.");
       return NextResponse.json([], {
         headers: {
-          'Cache-Control': 'no-store',
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+          'CDN-Cache-Control': 'public, s-maxage=300',
         }
       });
     }
@@ -63,6 +63,11 @@ export async function GET(request: NextRequest) {
     });
   } catch (error: any) {
     console.error("Properties GET error:", error);
-    return NextResponse.json([], { status: 500 });
+    return NextResponse.json([], { 
+      status: 500,
+      headers: {
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120'
+      }
+    });
   }
 }

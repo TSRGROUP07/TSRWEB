@@ -88,16 +88,6 @@ export default function HeroVideo({ videoUrl, forceDirect = true, totalPropertie
         setVideoData({ url: videoUrl, type: videoType });
         setLoading(false);
       }
-
-      const videoType = getVideoType(videoUrl);
-      // Video'yu preload et - Hemen başlat
-      if (videoType === 'direct' && typeof window !== 'undefined') {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'video';
-        link.href = videoUrl;
-        document.head.appendChild(link);
-      }
       return; // Prop varsa API çağrısı yapma!
     }
 
