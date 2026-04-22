@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, Calendar, MapPin, ChevronDown, Settings, Users, Fuel, Instagram, Youtube, Send, Music, X } from "lucide-react";
